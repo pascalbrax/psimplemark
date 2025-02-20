@@ -3,7 +3,7 @@ import multiprocessing
 import platform
 import time
 
-# A simple python CPU benchmark - pascal brax 2025
+# a simple python CPU benchmark
 
 # Define the number of operations
 NUM_OPERATIONS = 10**7  # 10 million operations per core
@@ -73,11 +73,15 @@ def convert_to_flops_units(value):
         return f"{value:.0f} FLOPS"
 
 def print_flops_comparison(current_flops):
-    """Prints a comparison of the current system against reference CPU benchmarks."""
+    """Prints a sorted comparison of the current system against reference CPU benchmarks."""
     print("\n=== FLOPS COMPARISON ===")
-    max_reference = max(REFERENCE_RESULTS.values())  # Best known CPU performance
+    
+    # Sort reference CPUs by FLOPS in descending order
+    sorted_results = sorted(REFERENCE_RESULTS.items(), key=lambda x: x[1], reverse=True)
+    
+    max_reference = sorted_results[0][1]  # Best known CPU performance
 
-    for system, ref_flops in REFERENCE_RESULTS.items():
+    for system, ref_flops in sorted_results:
         bar_length = 40
         normalized_length = int((ref_flops / max_reference) * bar_length)
         bar = "█" * normalized_length
@@ -134,7 +138,7 @@ def run_benchmark():
     print(f"Total Floating-Point Operations in 10 seconds: {total_flops:,}")
     print(f"Approximate FLOPS Performance: {flops_human_readable}\n")
 
-    # Print comparison with stored reference results
+    # Print sorted comparison with stored reference results
     print_flops_comparison(total_flops)
 
 if __name__ == "__main__":
