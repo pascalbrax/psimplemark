@@ -18,6 +18,7 @@ REFERENCE_RESULTS = {
     "Linux - Intel Xeon E5-2650 v3 @ 2.30GHz (1 core)": 64821430506292,
     "Linux - Intel Xeon E5-2650 v4 @ 2.20GHz": 1361250040632145,
     "Linux - Intel Xeon E5-2630 0 @ 2.30GHz": 351887765605588,
+    "Linux - Raspberry RPi 4 Model B @ 1.50GHz": 111122452296501,
 }
 
 def integer_operations(_=None):
